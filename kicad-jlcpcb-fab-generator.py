@@ -1,12 +1,14 @@
 #!/bin/python
-import click
-import glob
 import csv
-import shutil
+import glob
 import os
-from os import path
+import shutil
 import subprocess
 from collections import namedtuple
+from os import path
+
+import click
+
 
 class ScriptError(BaseException):
   def __init__(self, title: str, details: str, error_code: int):
@@ -139,7 +141,7 @@ def generate_pos(ec: ScriptExecutionContext):
     os.remove(pre_fixup_pos_filename)
 
 @click.command()
-@click.option('--project', '-p', required=True, type=click.Path(exists=True), help='KiCad project to generate fabraication output for')
+@click.option('--project', '-p', required=True, type=click.Path(exists=True), help='KiCad project folder to generate fabraication output for')
 @click.option('--schema', '-s', help='KiCad schema file, within the project, for fabrication')
 @click.option('--pcb', '-c', help='KiCad PCB file, within the project, to generate fabraication for')
 @click.option('--output', '-o', default='fab', help='Generation output fodler')
